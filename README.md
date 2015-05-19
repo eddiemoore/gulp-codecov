@@ -15,7 +15,7 @@ $ npm install --save-dev gulp-codecov.io
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var codecov = require('gulp-codecov');
+var codecov = require('gulp-codecov.io');
 
 gulp.src('./coverage/lcov.info')
   .pipe(codecov());
