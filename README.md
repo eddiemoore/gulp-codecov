@@ -31,7 +31,7 @@ gulp.src('./coverage/lcov.info')
 [travis-url]: http://travis-ci.org/eddiemoore/gulp-codecov.io
 [travis-image]: https://img.shields.io/travis/eddiemoore/gulp-codecov.io/master.svg?style=flat-square
 
-[codecov-url]: https://codecov.io/r/codecov.io/gulp-codecov.io
+[codecov-url]: https://codecov.io/github/eddiemoore/gulp-codecov.io
 [codecov-image]: https://img.shields.io/codecov/c/github/eddiemoore/gulp-codecov.io/master.svg?style=flat-square
 
 [depstat-url]: https://david-dm.org/eddiemoore/gulp-codecov.io

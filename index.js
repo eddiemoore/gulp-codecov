@@ -4,7 +4,7 @@ var path = require('path')
 var gutil = require('gulp-util')
 var codecov = require('codecov.io')
 
-const PLUGIN_NAME = 'gulp-codecov.io'
+var PLUGIN_NAME = 'gulp-codecov.io'
 
 function Codecov (options) {
   options = options || {}
