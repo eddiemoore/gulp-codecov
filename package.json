@@ -4,7 +4,8 @@
   "description": "Gulp plugin to submit code coverage to Codecov.io",
   "keywords": [
     "gulpplugin",
-    "coverage"
+    "coverage",
+    "codecov"
   ],
   "homepage": "https://github.com/eddiemoore/gulp-codecov.io",
   "bugs": "https://github.com/eddiemoore/gulp-codecov.io/issues",

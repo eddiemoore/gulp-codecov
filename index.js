@@ -20,7 +20,7 @@ function Codecov (options) {
       return cb(null, file)
     }
 
-    codecov(file.contents, function (err) {
+    codecov.handleInput(file.contents, function (err) {
       if (err) {
         console.log('error sending to codecov.io: ', err, err.stack)
         if (/non-success response/.test(err.message)) {
