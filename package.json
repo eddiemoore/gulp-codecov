@@ -1,6 +1,6 @@
 {
   "name": "gulp-codecov.io",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gulp plugin to submit code coverage to Codecov.io",
   "keywords": [
     "gulpplugin",
@@ -30,10 +30,12 @@
   },
   "devDependencies": {
     "chai": "^2.3.0",
+    "event-stream": "^3.3.1",
     "gulp": "^3.8.11",
     "istanbul": "^0.3.13",
     "mocha": "^2.2.4",
     "mocha-lcov-reporter": "^0.0.2",
+    "sinon": "^1.14.1",
     "standard": "^3.11.0"
   },
   "engines": {
