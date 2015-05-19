@@ -11,12 +11,6 @@ module.exports = function () {
     function sendToCodecov (input, done) {
       codecov.handleInput(input, function (err) {
         if (err) {
-          console.log('error sending to codecov.io: ', err, err.stack)
-          if (/non-success response/.test(err.message)) {
-            console.log('detail: ', err.detail)
-          } else {
-            console.log('SUCCESS')
-          }
           return done(new gutil.PluginError(PLUGIN_NAME, err))
         }
         return done(null, file)
