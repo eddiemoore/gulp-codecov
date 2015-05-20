@@ -5,7 +5,11 @@
   "keywords": [
     "gulpplugin",
     "coverage",
-    "codecov"
+    "codecov",
+    "gulp-codecov",
+    "code-coverage",
+    "codecov.io",
+    "gulp"
   ],
   "homepage": "https://github.com/eddiemoore/gulp-codecov.io",
   "bugs": "https://github.com/eddiemoore/gulp-codecov.io/issues",
