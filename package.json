@@ -29,14 +29,14 @@
     "through2": "^1.1.1"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
+    "chai": "^3.0.0",
     "event-stream": "^3.3.1",
-    "gulp": "^3.8.11",
+    "gulp": "^3.9.0",
     "istanbul": "^0.3.13",
     "mocha": "^2.2.4",
     "mocha-lcov-reporter": "^0.0.2",
-    "sinon": "^1.14.1",
-    "standard": "^3.11.0"
+    "sinon": "^1.15.3",
+    "standard": "^4.2.1"
   },
   "engines": {
     "node": ">=0.10.0",
