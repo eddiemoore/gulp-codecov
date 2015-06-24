@@ -1,6 +1,6 @@
 {
   "name": "gulp-codecov.io",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Gulp plugin to submit code coverage to Codecov.io",
   "keywords": [
     "gulpplugin",
@@ -27,20 +27,20 @@
     "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
   },
   "dependencies": {
-    "codecov.io": "^0.1.2",
-    "gulp-util": "^3.0.4",
+    "codecov.io": "^0.1.4",
+    "gulp-util": "^3.0.6",
     "path": "^0.11.14",
-    "through2": "^1.1.1"
+    "through2": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
     "event-stream": "^3.3.1",
     "gulp": "^3.9.0",
-    "istanbul": "^0.3.13",
-    "mocha": "^2.2.4",
+    "istanbul": "^0.3.16",
+    "mocha": "^2.2.5",
     "mocha-lcov-reporter": "^0.0.2",
     "sinon": "^1.15.3",
-    "standard": "^4.2.1"
+    "standard": "^4.3.2"
   },
   "engines": {
     "node": ">=0.10.0",
