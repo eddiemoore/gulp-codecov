@@ -1,18 +1,18 @@
 {
-  "name": "gulp-codecov.io",
-  "version": "1.0.1",
-  "description": "Gulp plugin to submit code coverage to Codecov.io",
+  "name": "gulp-codecov",
+  "version": "2.0.0",
+  "description": "Gulp plugin to submit code coverage to Codecov",
   "keywords": [
     "gulpplugin",
     "coverage",
     "codecov",
     "gulp-codecov",
     "code-coverage",
-    "codecov",
+    "codecov.io",
     "gulp"
   ],
-  "homepage": "https://github.com/eddiemoore/gulp-codecov.io",
-  "bugs": "https://github.com/eddiemoore/gulp-codecov.io/issues",
+  "homepage": "https://github.com/eddiemoore/gulp-codecov",
+  "bugs": "https://github.com/eddiemoore/gulp-codecov/issues",
   "author": {
     "name": "Ed Moore",
     "url": "https://github.com/eddiemoore"
@@ -20,31 +20,31 @@
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/eddiemoore/gulp-codecov.io.git"
+    "url": "git://github.com/eddiemoore/gulp-codecov.git"
   },
   "scripts": {
     "test": "standard && istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
     "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
   },
   "dependencies": {
-    "codecov.io": "^0.1.5",
+    "codecov": "^1.0.1",
     "gulp-util": "^3.0.6",
-    "path": "^0.11.14",
+    "path": "^0.12.7",
     "through2": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
     "event-stream": "^3.3.1",
     "gulp": "^3.9.0",
-    "istanbul": "^0.3.17",
+    "istanbul": "^0.4.2",
     "mocha": "^2.2.5",
-    "mocha-lcov-reporter": "^0.0.2",
+    "mocha-lcov-reporter": "^1.0.0",
     "sinon": "^1.15.4",
-    "standard": "^4.5.3"
+    "standard": "^5.4.1"
   },
   "engines": {
     "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
-  "licenses": "MIT"
+  "license": "MIT"
 }

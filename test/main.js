@@ -5,10 +5,10 @@ var fs = require('fs')
 var es = require('event-stream')
 var gutil = require('gulp-util')
 var sinon = require('sinon')
-var codecov = require('codecov.io')
+var codecov = require('codecov')
 var gulpCodecov = require('../')
 
-describe('gulp-codecov.io', function () {
+describe('gulp-codecov', function () {
   process.env.TRAVIS = 'true'
   process.env.TRAVIS_JOB_ID = '1234'
   process.env.TRAVIS_COMMIT = '5678'
@@ -19,11 +19,11 @@ describe('gulp-codecov.io', function () {
 
   describe('success', function () {
     beforeEach(function () {
-      sinon.stub(codecov, 'handleInput').callsArgWith(1, null, {}, '')
+      sinon.stub(codecov.handleInput, 'upload').callsArgWith(1, 'success')
     })
 
     afterEach(function () {
-      codecov.handleInput.restore && codecov.handleInput.restore()
+      codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
     it('should pass the file through via buffer', function (done) {
@@ -53,7 +53,6 @@ describe('gulp-codecov.io', function () {
     })
 
     it('should send the file contents to Codecov', function (done) {
-
       var srcFile = new gutil.File({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
@@ -66,8 +65,12 @@ describe('gulp-codecov.io', function () {
       stream.end()
 
       stream.once('data', function () {
-        sinon.assert.calledOnce(codecov.handleInput)
-        sinon.assert.calledWith(codecov.handleInput, srcFile.contents.toString(), sinon.match.func)
+        sinon.assert.calledOnce(codecov.handleInput.upload)
+        sinon.assert.calledWith(codecov.handleInput.upload, {
+          options: {
+            file: 'test/fixtures/lcov.info'
+          }
+        }, sinon.match.func, sinon.match.func)
         done()
       })
     })
@@ -75,7 +78,7 @@ describe('gulp-codecov.io', function () {
 
   describe('when Codecov responds with an error', function () {
     beforeEach(function () {
-      sinon.stub(codecov, 'handleInput').callsArgWith(1, {
+      sinon.stub(codecov.handleInput, 'upload').callsArgWith(2, {
         stack: 'err',
         detail: 'non-success response',
         message: 'non-success response'
@@ -83,7 +86,7 @@ describe('gulp-codecov.io', function () {
     })
 
     afterEach(function () {
-      codecov.handleInput.restore && codecov.handleInput.restore()
+      codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
     it('should emit an error', function (done) {
@@ -108,11 +111,11 @@ describe('gulp-codecov.io', function () {
 
   describe('nulls', function () {
     beforeEach(function () {
-      sinon.stub(codecov, 'handleInput')
+      sinon.stub(codecov.handleInput, 'upload')
     })
 
     afterEach(function () {
-      codecov.handleInput.restore && codecov.handleInput.restore()
+      codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
     it('should pass the file through when null', function (done) {
@@ -122,7 +125,7 @@ describe('gulp-codecov.io', function () {
 
       stream.once('data', function (newFile) {
         expect(newFile).to.exist
-        sinon.assert.notCalled(codecov.handleInput)
+        sinon.assert.notCalled(codecov.handleInput.upload)
         done()
       })
 
@@ -156,6 +159,5 @@ describe('gulp-codecov.io', function () {
       stream.write(srcFile)
       stream.end()
     })
-
   })
 })
