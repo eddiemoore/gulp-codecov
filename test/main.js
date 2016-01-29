@@ -19,7 +19,7 @@ describe('gulp-codecov', function () {
 
   describe('success', function () {
     beforeEach(function () {
-      sinon.stub(codecov.handleInput, 'upload')
+      sinon.stub(codecov.handleInput, 'upload').callsArgWith(1, 'success')
     })
 
     afterEach(function () {

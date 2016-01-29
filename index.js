@@ -12,10 +12,10 @@ module.exports = function (opts) {
       options.file = path
       codecov.handleInput.upload({
         options: options
-      }, function (res) {
+      }, function () {
         return done(null, file)
       }, function (err) {
-        return done(new gutil.PluginError(PLUGIN_NAME, err || 'Could not upload'))
+        return done(new gutil.PluginError(PLUGIN_NAME, err))
       })
     }
 
