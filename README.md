@@ -9,7 +9,7 @@
 First, install `gulp-codecov` as a dev dependency:
 
 ```bash
-$ npm install --save-dev gulp-codecovv
+$ npm install --save-dev gulp-codecov
 ```
 
 Then, add it to your `gulpfile.js`:
