@@ -29,10 +29,10 @@ gulp.src('./coverage/lcov.info')
 [npm-image]: https://img.shields.io/npm/v/gulp-codecov.svg?style=flat-square
 
 [travis-url]: http://travis-ci.org/eddiemoore/gulp-codecov
-[travis-image]: https://img.shields.io/travis/eddiemoore/gulp-codecov.io/master.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/eddiemoore/gulp-codecov/master.svg?style=flat-square
 
 [codecov-url]: https://codecov.io/github/eddiemoore/gulp-codecov
-[codecov-image]: https://img.shields.io/codecov/c/github/eddiemoore/gulp-codecov.io/master.svg?style=flat-square
+[codecov-image]: https://img.shields.io/codecov/c/github/eddiemoore/gulp-codecov/master.svg?style=flat-square
 
 [depstat-url]: https://david-dm.org/eddiemoore/gulp-codecov
 [depstat-image]: https://img.shields.io/david/eddiemoore/gulp-codecov/master.svg?style=flat-square
