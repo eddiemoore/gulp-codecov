@@ -78,7 +78,7 @@ describe('gulp-codecov', function () {
 
   describe('when Codecov responds with an error', function () {
     beforeEach(function () {
-      sinon.stub(codecov.handleInput, 'upload').callsArgWith(1, {
+      sinon.stub(codecov.handleInput, 'upload').callsArgWith(2, {
         stack: 'err',
         detail: 'non-success response',
         message: 'non-success response'
