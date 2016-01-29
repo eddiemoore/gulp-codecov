@@ -13,7 +13,7 @@ module.exports = function (opts) {
       codecov.handleInput.upload({
         options: options
       }, function (err) {
-        return done(new gutil.PluginError(PLUGIN_NAME, err))
+        return done(new gutil.PluginError(PLUGIN_NAME, err || 'Could not upload'))
       }, function (res) {
         return done(null, file)
       })

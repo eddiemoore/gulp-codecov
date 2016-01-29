@@ -8,7 +8,7 @@
     "codecov",
     "gulp-codecov",
     "code-coverage",
-    "codecov",
+    "codecov.io",
     "gulp"
   ],
   "homepage": "https://github.com/eddiemoore/gulp-codecov",

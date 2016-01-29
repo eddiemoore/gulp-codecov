@@ -19,57 +19,61 @@ describe('gulp-codecov', function () {
 
   describe('success', function () {
     beforeEach(function () {
-      sinon.stub(codecov.handleInput, 'upload').callsArgWith(1, null, {}, '')
+      sinon.stub(codecov.handleInput, 'upload')
     })
 
     afterEach(function () {
       codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
-    // it('should pass the file through via buffer', function (done) {
-    //   var srcFile = new gutil.File({
-    //     base: 'test/fixtures',
-    //     cwd: 'test/',
-    //     path: 'test/fixtures/lcov.info',
-    //     contents: fs.readFileSync('test/fixtures/lcov.info')
-    //   })
-    //
-    //   var stream = gulpCodecov()
-    //
-    //   stream.once('error', function (err) {
-    //     expect(err).to.exist
-    //     done(err)
-    //   })
-    //
-    //   stream.once('data', function (newFile) {
-    //     expect(newFile).to.exist
-    //     expect(newFile.contents).to.exist
-    //     expect(String(newFile.contents)).to.equal(fs.readFileSync('test/expected/lcov.info', 'utf8'))
-    //     done()
-    //   })
-    //
-    //   stream.write(srcFile)
-    //   stream.end()
-    // })
+    it('should pass the file through via buffer', function (done) {
+      var srcFile = new gutil.File({
+        base: 'test/fixtures',
+        cwd: 'test/',
+        path: 'test/fixtures/lcov.info',
+        contents: fs.readFileSync('test/fixtures/lcov.info')
+      })
 
-    // it('should send the file contents to Codecov', function (done) {
-    //   var srcFile = new gutil.File({
-    //     path: 'test/fixtures/lcov.info',
-    //     cwd: 'test/',
-    //     base: 'test/fixtures',
-    //     contents: fs.readFileSync('test/fixtures/lcov.info')
-    //   })
-    //
-    //   var stream = gulpCodecov()
-    //   stream.write(srcFile)
-    //   stream.end()
-    //
-    //   stream.once('data', function () {
-    //     sinon.assert.calledOnce(codecov.handleInput.upload)
-    //     sinon.assert.calledWith(codecov.handleInput.upload, srcFile.contents.toString(), sinon.match.func)
-    //     done()
-    //   })
-    // })
+      var stream = gulpCodecov()
+
+      stream.once('error', function (err) {
+        expect(err).to.exist
+        done(err)
+      })
+
+      stream.once('data', function (newFile) {
+        expect(newFile).to.exist
+        expect(newFile.contents).to.exist
+        expect(String(newFile.contents)).to.equal(fs.readFileSync('test/expected/lcov.info', 'utf8'))
+        done()
+      })
+
+      stream.write(srcFile)
+      stream.end()
+    })
+
+    it('should send the file contents to Codecov', function (done) {
+      var srcFile = new gutil.File({
+        path: 'test/fixtures/lcov.info',
+        cwd: 'test/',
+        base: 'test/fixtures',
+        contents: fs.readFileSync('test/fixtures/lcov.info')
+      })
+
+      var stream = gulpCodecov()
+      stream.write(srcFile)
+      stream.end()
+
+      stream.once('data', function () {
+        sinon.assert.calledOnce(codecov.handleInput.upload)
+        sinon.assert.calledWith(codecov.handleInput.upload, {
+          options: {
+            file: 'test/fixtures/lcov.info'
+          }
+        }, sinon.match.func, sinon.match.func)
+        done()
+      })
+    })
   })
 
   describe('when Codecov responds with an error', function () {
@@ -105,30 +109,30 @@ describe('gulp-codecov', function () {
     })
   })
 
-  // describe('nulls', function () {
-  //   beforeEach(function () {
-  //     sinon.stub(codecov.handleInput, 'upload')
-  //   })
-  //
-  //   afterEach(function () {
-  //     codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
-  //   })
-  //
-  //   it('should pass the file through when null', function (done) {
-  //     var nullFile = new gutil.File()
-  //
-  //     var stream = gulpCodecov()
-  //
-  //     stream.once('data', function (newFile) {
-  //       expect(newFile).to.exist
-  //       sinon.assert.notCalled(codecov.handleInput)
-  //       done()
-  //     })
-  //
-  //     stream.write(nullFile)
-  //     stream.end()
-  //   })
-  // })
+  describe('nulls', function () {
+    beforeEach(function () {
+      sinon.stub(codecov.handleInput, 'upload')
+    })
+
+    afterEach(function () {
+      codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
+    })
+
+    it('should pass the file through when null', function (done) {
+      var nullFile = new gutil.File()
+
+      var stream = gulpCodecov()
+
+      stream.once('data', function (newFile) {
+        expect(newFile).to.exist
+        sinon.assert.notCalled(codecov.handleInput.upload)
+        done()
+      })
+
+      stream.write(nullFile)
+      stream.end()
+    })
+  })
 
   describe('streams', function () {
     it('should error on stream', function (done) {
