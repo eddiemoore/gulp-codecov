@@ -1,4 +1,4 @@
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url] [![npm Downloads][downloads-image]][npm-url]
 
 # gulp-codecov
 
@@ -39,3 +39,5 @@ gulp.src('./coverage/lcov.info')
 
 [devdepstat-url]: https://david-dm.org/eddiemoore/gulp-codecov#info=devDependencies
 [devdepstat-image]: https://img.shields.io/david/dev/eddiemoore/gulp-codecov/master.svg?style=flat-square
+
+[downloads-image]: https://img.shields.io/npm/dt/gulp-codecov.svg?maxAge=2592000&style=flat-square
