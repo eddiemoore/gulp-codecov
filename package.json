@@ -43,7 +43,7 @@
     "standard": "^10.0.2"
   },
   "engines": {
-    "node": ">=0.10.0",
+    "node": ">= 4",
     "npm": ">=1.2.10"
   },
   "license": "MIT"
