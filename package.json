@@ -27,7 +27,7 @@
     "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
   },
   "dependencies": {
-    "codecov": "^1.0.1",
+    "codecov": "^2.1.0",
     "gulp-util": "^3.0.6",
     "path": "^0.12.7",
     "through2": "^2.0.0"
