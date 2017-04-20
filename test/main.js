@@ -1,4 +1,4 @@
-/*global describe, it, beforeEach, afterEach */
+/* global describe, it, beforeEach, afterEach */
 'use strict'
 var expect = require('chai').expect
 var fs = require('fs')
@@ -37,13 +37,13 @@ describe('gulp-codecov', function () {
       var stream = gulpCodecov()
 
       stream.once('error', function (err) {
-        expect(err).to.exist
+        expect(err).to.exist // eslint-disable-line
         done(err)
       })
 
       stream.once('data', function (newFile) {
-        expect(newFile).to.exist
-        expect(newFile.contents).to.exist
+        expect(newFile).to.exist // eslint-disable-line
+        expect(newFile.contents).to.exist // eslint-disable-line
         expect(String(newFile.contents)).to.equal(fs.readFileSync('test/expected/lcov.info', 'utf8'))
         done()
       })
@@ -100,7 +100,7 @@ describe('gulp-codecov', function () {
       var stream = gulpCodecov()
 
       stream.once('error', function (error) {
-        expect(error).to.exist
+        expect(error).to.exist // eslint-disable-line
         done()
       })
 
@@ -124,7 +124,7 @@ describe('gulp-codecov', function () {
       var stream = gulpCodecov()
 
       stream.once('data', function (newFile) {
-        expect(newFile).to.exist
+        expect(newFile).to.exist // eslint-disable-line
         sinon.assert.notCalled(codecov.handleInput.upload)
         done()
       })
@@ -146,7 +146,7 @@ describe('gulp-codecov', function () {
       var stream = gulpCodecov()
 
       stream.on('error', function (err) {
-        expect(err).to.exist
+        expect(err).to.exist // eslint-disable-line
         done()
       })
 
