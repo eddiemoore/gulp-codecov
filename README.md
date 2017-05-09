@@ -2,6 +2,8 @@
 
 # gulp-codecov
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/eddiemoore/gulp-codecov.svg)](https://greenkeeper.io/)
+
 [Gulp](https://github.com/wearefractal/gulp) plugin to submit code coverage to [Codecov.io](http://codecov.io).
 
 ## Usage
