@@ -1,14 +1,14 @@
 /* global describe, it, beforeEach, afterEach */
 'use strict'
-var expect = require('chai').expect
-var fs = require('fs')
-var es = require('event-stream')
-var gutil = require('gulp-util')
-var sinon = require('sinon')
-var codecov = require('codecov')
-var gulpCodecov = require('../')
+const expect = require('chai').expect
+const fs = require('fs')
+const es = require('event-stream')
+const gutil = require('gulp-util')
+const sinon = require('sinon')
+const codecov = require('codecov')
+const gulpCodecov = require('../')
 
-describe('gulp-codecov', function() {
+describe('gulp-codecov', () => {
   process.env.TRAVIS = 'true'
   process.env.TRAVIS_JOB_ID = '1234'
   process.env.TRAVIS_COMMIT = '5678'
@@ -17,31 +17,31 @@ describe('gulp-codecov', function() {
   process.env.TRAVIS_PULL_REQUEST = 'blah'
   process.env.TRAVIS_REPO_SLUG = 'owner/repo'
 
-  describe('success', function() {
-    beforeEach(function() {
+  describe('success', () => {
+    beforeEach(() => {
       sinon.stub(codecov.handleInput, 'upload').callsArgWith(1, 'success')
     })
 
-    afterEach(function() {
+    afterEach(() => {
       codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
-    it('should pass the file through via buffer', function(done) {
-      var srcFile = new gutil.File({
+    it('should pass the file through via buffer', done => {
+      const srcFile = new gutil.File({
         base: 'test/fixtures',
         cwd: 'test/',
         path: 'test/fixtures/lcov.info',
         contents: fs.readFileSync('test/fixtures/lcov.info')
       })
 
-      var stream = gulpCodecov()
+      const stream = gulpCodecov()
 
-      stream.once('error', function(err) {
+      stream.once('error', err => {
         expect(err).to.exist // eslint-disable-line
         done(err)
       })
 
-      stream.once('data', function(newFile) {
+      stream.once('data', newFile => {
         expect(newFile).to.exist // eslint-disable-line
         expect(newFile.contents).to.exist // eslint-disable-line
         expect(String(newFile.contents)).to.equal(
@@ -54,19 +54,19 @@ describe('gulp-codecov', function() {
       stream.end()
     })
 
-    it('should send the file contents to Codecov', function(done) {
-      var srcFile = new gutil.File({
+    it('should send the file contents to Codecov', done => {
+      const srcFile = new gutil.File({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
         base: 'test/fixtures',
         contents: fs.readFileSync('test/fixtures/lcov.info')
       })
 
-      var stream = gulpCodecov()
+      const stream = gulpCodecov()
       stream.write(srcFile)
       stream.end()
 
-      stream.once('data', function() {
+      stream.once('data', () => {
         sinon.assert.calledOnce(codecov.handleInput.upload)
         sinon.assert.calledWith(
           codecov.handleInput.upload,
@@ -83,8 +83,8 @@ describe('gulp-codecov', function() {
     })
   })
 
-  describe('when Codecov responds with an error', function() {
-    beforeEach(function() {
+  describe('when Codecov responds with an error', () => {
+    beforeEach(() => {
       sinon.stub(codecov.handleInput, 'upload').callsArgWith(2, {
         stack: 'err',
         detail: 'non-success response',
@@ -92,21 +92,21 @@ describe('gulp-codecov', function() {
       })
     })
 
-    afterEach(function() {
+    afterEach(() => {
       codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
-    it('should emit an error', function(done) {
-      var srcFile = new gutil.File({
+    it('should emit an error', done => {
+      const srcFile = new gutil.File({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
         base: 'test/fixtures',
         contents: fs.readFileSync('test/fixtures/lcov.info')
       })
 
-      var stream = gulpCodecov()
+      const stream = gulpCodecov()
 
-      stream.once('error', function(error) {
+      stream.once('error', error => {
         expect(error).to.exist // eslint-disable-line
         done()
       })
@@ -116,21 +116,21 @@ describe('gulp-codecov', function() {
     })
   })
 
-  describe('nulls', function() {
-    beforeEach(function() {
+  describe('nulls', () => {
+    beforeEach(() => {
       sinon.stub(codecov.handleInput, 'upload')
     })
 
-    afterEach(function() {
+    afterEach(() => {
       codecov.handleInput.upload.restore && codecov.handleInput.upload.restore()
     })
 
-    it('should pass the file through when null', function(done) {
-      var nullFile = new gutil.File()
+    it('should pass the file through when null', done => {
+      const nullFile = new gutil.File()
 
-      var stream = gulpCodecov()
+      const stream = gulpCodecov()
 
-      stream.once('data', function(newFile) {
+      stream.once('data', newFile => {
         expect(newFile).to.exist // eslint-disable-line
         sinon.assert.notCalled(codecov.handleInput.upload)
         done()
@@ -141,25 +141,25 @@ describe('gulp-codecov', function() {
     })
   })
 
-  describe('streams', function() {
-    it('should error on stream', function(done) {
-      var srcFile = new gutil.File({
+  describe('streams', () => {
+    it('should error on stream', done => {
+      const srcFile = new gutil.File({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
         base: 'test/fixtures',
         contents: fs.createReadStream('test/fixtures/lcov.info')
       })
 
-      var stream = gulpCodecov()
+      const stream = gulpCodecov()
 
-      stream.on('error', function(err) {
+      stream.on('error', err => {
         expect(err).to.exist // eslint-disable-line
         done()
       })
 
-      stream.on('data', function(newFile) {
+      stream.on('data', newFile => {
         newFile.contents.pipe(
-          es.wait(function(err, data) {
+          es.wait((err, data) => {
             done(err)
           })
         )
