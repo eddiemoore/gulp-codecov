@@ -3,7 +3,7 @@
 const expect = require('chai').expect
 const fs = require('fs')
 const es = require('event-stream')
-const gutil = require('gulp-util')
+const Vinyl = require('vinyl')
 const sinon = require('sinon')
 const codecov = require('codecov')
 const gulpCodecov = require('../')
@@ -27,7 +27,7 @@ describe('gulp-codecov', () => {
     })
 
     it('should pass the file through via buffer', done => {
-      const srcFile = new gutil.File({
+      const srcFile = new Vinyl({
         base: 'test/fixtures',
         cwd: 'test/',
         path: 'test/fixtures/lcov.info',
@@ -55,7 +55,7 @@ describe('gulp-codecov', () => {
     })
 
     it('should send the file contents to Codecov', done => {
-      const srcFile = new gutil.File({
+      const srcFile = new Vinyl({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
         base: 'test/fixtures',
@@ -97,7 +97,7 @@ describe('gulp-codecov', () => {
     })
 
     it('should emit an error', done => {
-      const srcFile = new gutil.File({
+      const srcFile = new Vinyl({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
         base: 'test/fixtures',
@@ -126,7 +126,7 @@ describe('gulp-codecov', () => {
     })
 
     it('should pass the file through when null', done => {
-      const nullFile = new gutil.File()
+      const nullFile = new Vinyl()
 
       const stream = gulpCodecov()
 
@@ -143,7 +143,7 @@ describe('gulp-codecov', () => {
 
   describe('streams', () => {
     it('should error on stream', done => {
-      const srcFile = new gutil.File({
+      const srcFile = new Vinyl({
         path: 'test/fixtures/lcov.info',
         cwd: 'test/',
         base: 'test/fixtures',
