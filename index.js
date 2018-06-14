@@ -1,25 +1,19 @@
 'use strict'
-var through = require('through2')
-var gutil = require('gulp-util')
-var codecov = require('codecov')
+const through = require('through2')
+const gutil = require('gulp-util')
+const codecov = require('codecov')
 
-var PLUGIN_NAME = 'gulp-codecov'
+const PLUGIN_NAME = 'gulp-codecov'
 
-module.exports = function(opts) {
-  return through.obj(function(file, enc, callback) {
-    function sendToCodecov(path, done) {
-      var options = opts || {}
+module.exports = opts =>
+  through.obj(function(file, enc, callback) {
+    const sendToCodecov = (path, done) => {
+      const options = opts || {}
       options.file = path
       codecov.handleInput.upload(
-        {
-          options: options
-        },
-        function() {
-          return done(null, file)
-        },
-        function(err) {
-          return done(new gutil.PluginError(PLUGIN_NAME, err))
-        }
+        { options },
+        () => done(null, file),
+        err => done(new gutil.PluginError(PLUGIN_NAME, err))
       )
     }
 
@@ -41,4 +35,3 @@ module.exports = function(opts) {
       this.push(file)
     }
   })
-}
