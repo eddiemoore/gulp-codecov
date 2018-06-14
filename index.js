@@ -1,6 +1,6 @@
 'use strict'
 const through = require('through2')
-const gutil = require('gulp-util')
+const PluginError = require('plugin-error')
 const codecov = require('codecov')
 
 const PLUGIN_NAME = 'gulp-codecov'
@@ -13,7 +13,7 @@ module.exports = opts =>
       codecov.handleInput.upload(
         { options },
         () => done(null, file),
-        err => done(new gutil.PluginError(PLUGIN_NAME, err))
+        err => done(new PluginError(PLUGIN_NAME, err))
       )
     }
 
@@ -25,7 +25,7 @@ module.exports = opts =>
     if (file.isStream()) {
       this.emit(
         'error',
-        new gutil.PluginError(PLUGIN_NAME, 'Stream content is not supported')
+        new PluginError(PLUGIN_NAME, 'Stream content is not supported')
       )
       return callback()
     }
