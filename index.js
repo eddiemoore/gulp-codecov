@@ -5,18 +5,22 @@ var codecov = require('codecov')
 
 var PLUGIN_NAME = 'gulp-codecov'
 
-module.exports = function (opts) {
-  return through.obj(function (file, enc, callback) {
-    function sendToCodecov (path, done) {
+module.exports = function(opts) {
+  return through.obj(function(file, enc, callback) {
+    function sendToCodecov(path, done) {
       var options = opts || {}
       options.file = path
-      codecov.handleInput.upload({
-        options: options
-      }, function () {
-        return done(null, file)
-      }, function (err) {
-        return done(new gutil.PluginError(PLUGIN_NAME, err))
-      })
+      codecov.handleInput.upload(
+        {
+          options: options
+        },
+        function() {
+          return done(null, file)
+        },
+        function(err) {
+          return done(new gutil.PluginError(PLUGIN_NAME, err))
+        }
+      )
     }
 
     if (file.isNull()) {
@@ -25,7 +29,10 @@ module.exports = function (opts) {
     }
 
     if (file.isStream()) {
-      this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Stream content is not supported'))
+      this.emit(
+        'error',
+        new gutil.PluginError(PLUGIN_NAME, 'Stream content is not supported')
+      )
       return callback()
     }
 
