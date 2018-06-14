@@ -1,6 +1,4 @@
-var gulp = require('gulp')
-var codecov = require('./index.js')
+const gulp = require('gulp')
+const codecov = require('./index.js')
 
-gulp.task('codecov', function() {
-  return gulp.src('./coverage/lcov.info').pipe(codecov())
-})
+gulp.task('codecov', () => gulp.src('./coverage/lcov.info').pipe(codecov()))
