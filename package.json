@@ -24,6 +24,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
+    "prettier": "prettier-standard *.js test/*.js test/**/*.js",
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
     "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
   },
