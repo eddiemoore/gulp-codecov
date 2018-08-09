@@ -1,6 +1,6 @@
 {
   "name": "gulp-codecov",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Gulp plugin to submit code coverage to Codecov",
   "keywords": [
     "gulpplugin",
