@@ -6,7 +6,7 @@ const codecov = require('codecov')
 const PLUGIN_NAME = 'gulp-codecov'
 
 module.exports = opts =>
-  through.obj(function(file, enc, callback) {
+  through.obj(function (file, enc, callback) {
     const sendToCodecov = (path, done) => {
       const options = opts || {}
       options.file = path
