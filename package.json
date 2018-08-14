@@ -24,6 +24,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
+    "prettier": "prettier-standard *.js test/*.js test/**/*.js",
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
     "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
   },
@@ -42,7 +43,7 @@
     "lint-staged": "7.2.0",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "prettier": "1.14.2",
+    "prettier-standard": "^8.0.1",
     "sinon": "6.1.4",
     "vinyl": "2.2.0"
   },
@@ -53,11 +54,11 @@
   "license": "MIT",
   "lint-staged": {
     "**/*.js": [
-      "prettier --write",
+      "prettier-standard",
       "git add"
     ],
     "*.js": [
-      "prettier --write",
+      "prettier-standard",
       "git add"
     ]
   }
