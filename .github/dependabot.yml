@@ -1,0 +1,24 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "19:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: husky
+    versions:
+    - 5.1.1
+    - 5.1.2
+    - 5.2.0
+  - dependency-name: sinon
+    versions:
+    - 10.0.0
+  - dependency-name: mocha
+    versions:
+    - 8.3.1
+  - dependency-name: chai
+    versions:
+    - 4.3.1
+    - 4.3.3
