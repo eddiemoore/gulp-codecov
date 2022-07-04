@@ -31,7 +31,7 @@
   "dependencies": {
     "codecov": "^3.6.2",
     "path": "^0.12.7",
-    "plugin-error": "^1.0.1",
+    "plugin-error": "^2.0.0",
     "through2": "^3.0.1"
   },
   "devDependencies": {
